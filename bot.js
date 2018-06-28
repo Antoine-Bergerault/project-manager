@@ -110,4 +110,4 @@ function find(content, txt){
     return valid;
 }
 
-bot.login('process.env.BOT_TOKEN');
+bot.login(process.env.BOT_TOKEN);
