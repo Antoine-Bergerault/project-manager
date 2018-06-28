@@ -5,7 +5,7 @@ class Message {
         this.content = message.content;
         this.activator = '';
         this.tag = '';
-        this.serverID = 'anonymous';
+        this.serverID = this.discord.author.id;
         try{
             this.serverID = this.discord.guild.id;
         }catch(err){
