@@ -1,4 +1,4 @@
-let main = require('./bot.js');
+﻿let main = require('./bot.js');
 
 let App = main.app;
 let Database = main.database;
@@ -720,7 +720,7 @@ const commands = [
 
     {//deleteConstant [name]
         name : 'delete [name]',
-        description : 'delete the constat with the specified name',
+        description : 'delete the constant with the specified name',
         result : (message) => {
             if(message.param == null){
                 message.answer("You need to specify the constant name");
