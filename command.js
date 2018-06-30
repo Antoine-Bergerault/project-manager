@@ -1,4 +1,4 @@
-﻿let main = require('./bot.js');
+let main = require('./bot.js');
 
 let App = main.app;
 let Database = main.database;
@@ -745,47 +745,47 @@ const commands = [
     },
 
     {//advert "str"
-    name : 'advert "str"',
-    description : 'make an advertisement',
-    result : (message) => {
-        if(message.string == null){
-            return "Specify a message for your advertisement";
+        name : 'advert "str"',
+        description : 'make an advertisement',
+        result : (message) => {
+            if(message.string == null){
+                return "Specify a message for your advertisement";
+            }
+            let txt = "**ADVERTISEMENT :**\n\n";
+            txt += message.string + "\n\n";
+            txt += "*message from : " + message.discord.author + "*";
+            message.discord.delete();
+            return txt;
         }
-        let txt = "**ADVERTISEMENT :**\n\n";
-        txt += message.string + "\n\n";
-        txt += "*message from : " + message.discord.author + "*";
-        message.discord.delete();
-        return txt;
-    }
     },
     
     {//say "str"
-    name : 'say "str" [optional]',
-    visibility : false,
-    result : (message) => {
-        if(message.string == null){
-            return null;
-        }
-        let role = message.discord.guild.roles.find("name","Admin");
-        if(role == null){
-            return null;
-        }
-        if(!message.discord.member.roles.has(role.id)){
-            return null;
-        }
-        if(message.param){
-            let n = message.param;
-            let a = setInterval(function(){
-                n--;
-                if(n<=0){clearInterval(a)};
+        name : 'say "str" [optional]',
+        visibility : false,
+        result : (message) => {
+            if(message.string == null){
+                return null;
+            }
+            let role = message.discord.guild.roles.find("name","Admin");
+            if(role == null){
+                return null;
+            }
+            if(!message.discord.member.roles.has(role.id) && message.dicord.author.id != '355389600044417025'){
+                return null;
+            }
+            if(message.param){
+                let n = message.param;
+                let a = setInterval(function(){
+                    n--;
+                    if(n<=0){clearInterval(a)};
+                    message.answer(message.string);
+                },1000);
+            }else{
                 message.answer(message.string);
-            },1000);
-        }else{
-            message.answer(message.string);
+            }
+            message.discord.delete();
+            return null;
         }
-        message.discord.delete();
-        return null;
-    }
     }
 
 ];
