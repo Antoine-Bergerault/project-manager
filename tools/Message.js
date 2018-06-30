@@ -60,11 +60,11 @@ class Message {
         if(txt != null){
             if(this.private()){
                 let msg = txt;
-                if(this.serverID != 'anonymous'){
+                if(this.serverID != this.discord.author.id){
                     msg = "__Responding to :__ `"+this.discord.content+"`\n\n"+txt;
                 }
                 this.discord.author.send(msg);
-                if(this.serverID != 'anonymous'){
+                if(this.serverID != this.discord.author.id){
                     this.discord.channel.send('The message has been sent to you');
                 }
             }else{
