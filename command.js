@@ -758,6 +758,15 @@ const commands = [
             return txt;
         }
     },
+
+    {//invite
+        name : 'invite',
+        description : 'get the invite link for the bot',
+        result : (message) => {
+            let txt = "__There is the link to invite me to your server :__ https://discordapp.com/oauth2/authorize?client_id=451414817069072385&scope=bot&permissions=2146958583";
+            return txt;
+        }
+    },
     
     {//say "str"
         name : 'say "str" [optional]',
