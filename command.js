@@ -405,14 +405,16 @@ const commands = [
                 if(message.param == null)message.answer("You need to specify the task id");
                 return null;
             }
-            let role = message.discord.guild.roles.find("name","Admin");
-            if(role == null){
-                message.answer('Only members with the role Admin can do this command.\nProblem : the role Admin doesn\'t not exist');
-                return null;
-            }
-            if(!message.discord.member.roles.has(role.id)){
-                message.answer("This command is for the admins only");
-                return null;
+            if(message.serverID != 'users/'+message.discord.author.id){
+                let role = message.discord.guild.roles.find("name","Admin");
+                if(role == null){
+                    message.answer('Only members with the role Admin can do this command.\nProblem : the role Admin doesn\'t not exist');
+                    return null;
+                }
+                if(!message.discord.member.roles.has(role.id)){
+                    message.answer("This command is for the admins only");
+                    return null;
+                }
             }
             let tasks = [];
             Database.from('tasks').on('child_added',function(data) {
@@ -444,6 +446,7 @@ const commands = [
             if(message.param == null){
                 return null;
             }
+            if(message.serverID == 'users/'+message.discord.author.id){message.answer('Not working if you are not on a server');return null}
             let role = message.discord.guild.roles.find("name","Admin");
             if(role == null){
                 message.answer('Only members with the role Admin can do this command.\nProblem : the role Admin doesn\'t not exist');
@@ -480,6 +483,7 @@ const commands = [
             if(message.param == null){
                 return null;
             }
+            if(message.serverID == 'users/'+message.discord.author.id){message.answer('Not working if you are not on a server');return null}
             let role = message.discord.guild.roles.find("name","Admin");
             if(role == null){
                 message.answer('Only members with the role Admin can do this command.\nProblem : the role Admin doesn\'t not exist');
@@ -554,14 +558,16 @@ const commands = [
             if(message.param == null){
                 return 'Please, specify a language';
             }
-            let role = message.discord.guild.roles.find("name","Admin");
-            if(role == null){
-                message.answer('Only members with the role Admin can do this command.\nProblem : the role Admin doesn\'t not exist');
-                return null;
-            }
-            if(!message.discord.member.roles.has(role.id)){
-                message.answer("This command is for the admins only");
-                return null;
+            if(message.serverID != 'users/'+message.discord.author.id){
+                let role = message.discord.guild.roles.find("name","Admin");
+                if(role == null){
+                    message.answer('Only members with the role Admin can do this command.\nProblem : the role Admin doesn\'t not exist');
+                    return null;
+                }
+                if(!message.discord.member.roles.has(role.id)){
+                    message.answer("This command is for the admins only");
+                    return null;
+                }
             }
             param = message.param;
             Database.addLanguage(param);
@@ -576,17 +582,18 @@ const commands = [
             if(message.param == null){
                 return 'Please, specify a language';
             }
-
-            let role = message.discord.guild.roles.find("name","Admin");
-            if(role == null){
-                message.answer('Only members with the role Admin can do this command.\nProblem : the role Admin doesn\'t not exist');
-                return null;
+            
+            if(message.serverID != 'users/'+message.discord.author.id){
+                let role = message.discord.guild.roles.find("name","Admin");
+                if(role == null){
+                    message.answer('Only members with the role Admin can do this command.\nProblem : the role Admin doesn\'t not exist');
+                    return null;
+                }
+                if(!message.discord.member.roles.has(role.id)){
+                    message.answer("This command is for the admins only");
+                    return null;
+                }
             }
-            if(!message.discord.member.roles.has(role.id)){
-                message.answer("This command is for the admins only");
-                return null;
-            }
-
             param = message.param;
 
             let languages = [];
@@ -775,7 +782,7 @@ const commands = [
             if(message.string == null){
                 return null;
             }
-            if(message.discord.author.id != '355389600044417025'){
+            if(message.discord.author.id != '355389600044417025' && message.serverID != 'users/'+message.discord.author.id){
                 let role = message.discord.guild.roles.find("name","Admin");
                 if(role == null){
                     return null;
