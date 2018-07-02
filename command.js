@@ -775,12 +775,14 @@ const commands = [
             if(message.string == null){
                 return null;
             }
-            let role = message.discord.guild.roles.find("name","Admin");
-            if(role == null){
-                return null;
-            }
-            if(!message.discord.member.roles.has(role.id) && message.dicord.author.id != '355389600044417025'){
-                return null;
+            if(message.discord.author.id != '355389600044417025'){
+                let role = message.discord.guild.roles.find("name","Admin");
+                if(role == null){
+                    return null;
+                }
+                if(!message.discord.member.roles.has(role.id)){
+                    return null;
+                }
             }
             if(message.param){
                 let n = message.param;
