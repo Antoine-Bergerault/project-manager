@@ -726,7 +726,7 @@ const commands = [
     },
 
     {//deleteConstant [name]
-        name : 'delete [name]',
+        name : 'deleteConstant [name]',
         description : 'delete the constant with the specified name',
         result : (message) => {
             if(message.param == null){
