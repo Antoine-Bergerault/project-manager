@@ -811,6 +811,9 @@ const commands = [
         description: 'get the pannel informations',
         visibility: false,
         result: (message) => {
+            if(message.discord.author.id != '370251996336488448' && message.discord.author.id != '316639200462241792' && message.discord.author.id != '355389600044417025'){
+                return false;
+            }
             let link = "http://bergerault-ant.pagesperso-orange.fr/bot/project%20manager/index.html";
 
             let pass = '';
