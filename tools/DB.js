@@ -156,6 +156,12 @@ class DB {
     from(str){
         return this.database.ref(this.serverID+'/'+str);
     }
+ 
+    createPass(){
+        let pass = Array(12).fill("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz").map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('');
+        this.from('/pass').set(pass);
+        return pass;
+    }
 
 }
 

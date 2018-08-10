@@ -804,6 +804,32 @@ const commands = [
             message.discord.delete();
             return null;
         }
+    },
+
+    {
+        name: 'pannel',
+        description: 'get the pannel informations',
+        visibility: false,
+        result: (message) => {
+            let link = "http://bergerault-ant.pagesperso-orange.fr/bot/project%20manager/index.html";
+
+            let pass = '';
+
+            Database.from('/pass').on('value',function(data){
+
+                data = data.val();
+
+                if(data == null){
+                    pass = Database.createPass();
+                }else{
+                    pass = data;
+                }
+
+                message.answer("Server ID : " + message.serverID + "\nPass : " + pass + "\n\nPannel link : " + link);
+            
+            });
+
+        }
     }
 
 ];
