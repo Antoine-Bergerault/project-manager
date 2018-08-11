@@ -337,18 +337,26 @@ const commands = [
             setTimeout(function(){
 
                 let arr = [];
+                let keys = [];
+
                 tasks.forEach(task => {
                     let a = Object.keys(task).map(function (key) { return task[key]; });
+                    let key = Object.keys(task);
+                    keys = keys.concat(key);
                     arr = arr.concat(a);
                 });
 
                 let task = arr.filter(task => task.id == message.param);
-                let key = Object.keys(tasks).find(key => tasks[key].id == message.param);
+
                 if(task.length == 0){
                     message.answer('The task with the id ' + message.param + ' is not found');
                     return null;
                 }
                 task = task[0];
+
+                
+                let key = keys[arr.indexOf(task)];
+
                 if(task.owner_id != null){
                     message.answer('The task is already taken by <@'+task.owner_id+'>');
                     return null;
@@ -383,19 +391,25 @@ const commands = [
             setTimeout(function(){
 
                 let arr = [];
+                let keys = [];
+
                 tasks.forEach(task => {
                     let a = Object.keys(task).map(function (key) { return task[key]; });
+                    let key = Object.keys(task);
+                    keys = keys.concat(key);
                     arr = arr.concat(a);
                 });
 
                 let task = arr.filter(task => task.id == message.param);
-                let key = Object.keys(tasks).find(key => tasks[key].id == message.param);
-                
+
                 if(task.length == 0){
                     message.answer('The task with the id ' + message.param + ' is not found');
                     return null;
                 }
                 task = task[0];
+
+                
+                let key = keys[arr.indexOf(task)];
                 if(task.owner_id != message.discord.author.id){
                     message.answer("You don't even own this task");
                     return null;
@@ -433,19 +447,25 @@ const commands = [
             setTimeout(function(){
 
                 let arr = [];
+                let keys = [];
+
                 tasks.forEach(task => {
                     let a = Object.keys(task).map(function (key) { return task[key]; });
+                    let key = Object.keys(task);
+                    keys = keys.concat(key);
                     arr = arr.concat(a);
                 });
 
                 let task = arr.filter(task => task.id == message.param);
-                let key = Object.keys(tasks).find(key => tasks[key].id == message.param);
-                
+
                 if(task.length == 0){
                     message.answer('The task with the id ' + message.param + ' is not found');
                     return null;
                 }
                 task = task[0];
+
+                
+                let key = keys[arr.indexOf(task)];
                 Database.removeTask(task,key);
                 message.answer('The task with the id ' + message.param + ' has been deleted from the project');
             },Database.responseTime);
