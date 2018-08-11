@@ -381,8 +381,12 @@ const commands = [
             });
 
             setTimeout(function(){
-                tasks = tasks[0];
-                let arr = Object.keys(tasks).map(function (key) { return tasks[key]; });
+
+                let arr = [];
+                tasks.forEach(task => {
+                    let a = Object.keys(task).map(function (key) { return task[key]; });
+                    arr = arr.concat(a);
+                });
 
                 let task = arr.filter(task => task.id == message.param);
                 let key = Object.keys(tasks).find(key => tasks[key].id == message.param);
@@ -427,8 +431,12 @@ const commands = [
             });
 
             setTimeout(function(){
-                tasks = tasks[0];
-                let arr = Object.keys(tasks).map(function (key) { return tasks[key]; });
+
+                let arr = [];
+                tasks.forEach(task => {
+                    let a = Object.keys(task).map(function (key) { return task[key]; });
+                    arr = arr.concat(a);
+                });
 
                 let task = arr.filter(task => task.id == message.param);
                 let key = Object.keys(tasks).find(key => tasks[key].id == message.param);
