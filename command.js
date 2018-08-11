@@ -335,12 +335,15 @@ const commands = [
             });
 
             setTimeout(function(){
-                tasks = tasks[0];
-                let arr = Object.keys(tasks).map(function (key) { return tasks[key]; });
+
+                let arr = [];
+                tasks.forEach(task => {
+                    let a = Object.keys(task).map(function (key) { return task[key]; });
+                    arr = arr.concat(a);
+                });
 
                 let task = arr.filter(task => task.id == message.param);
                 let key = Object.keys(tasks).find(key => tasks[key].id == message.param);
-                
                 if(task.length == 0){
                     message.answer('The task with the id ' + message.param + ' is not found');
                     return null;
@@ -350,11 +353,13 @@ const commands = [
                     message.answer('The task is already taken by <@'+task.owner_id+'>');
                     return null;
                 }
-                let role = message.discord.guild.roles.find("name",task.language);
-                if(role == null || !message.discord.member.roles.has(role.id)){
-                    message.answer('You are not allowed to add a task with the language : `' + task.language + "`");
-                    message.answer("Because you don't have the role : `" + task.language + "`")
-                    return null;
+                if(!message.private()){
+                    let role = message.discord.guild.roles.find("name",task.language);
+                    if(role == null || !message.discord.member.roles.has(role.id)){
+                        message.answer('You are not allowed to add a task with the language : `' + task.language + "`");
+                        message.answer("Because you don't have the role : `" + task.language + "`")
+                        return null;
+                    }
                 }
                 Database.setTaskOwner(message.discord.author.id,task,key);
                 message.answer('The task with the id ' + message.param + ' has been added to you');
