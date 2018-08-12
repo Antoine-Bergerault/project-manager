@@ -90,8 +90,14 @@ const commands = [
 
             setTimeout(function(){
                 var txt = '';
-                tasks = tasks[0];
-                let arr = Object.keys(tasks).map(function (key) { return tasks[key]; });
+
+                let arr = [];
+
+                tasks.forEach(task => {
+                    let a = Object.keys(task).map(function (key) { return task[key]; });
+                    arr = arr.concat(a);
+                });
+
                 tasks = arr.filter(task => task.owner_id == id);
                 var d = new Date();
                 var n = d.getTime();
