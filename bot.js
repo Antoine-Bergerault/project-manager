@@ -1,4 +1,4 @@
-﻿var firebase = require("firebase");
+var firebase = require("firebase");
 
 let exportsObj = module.exports = {};
 
@@ -16,19 +16,20 @@ App['links'] = links;
 
 exportsObj.app = App;
 
-let commands = require('./command.js');
-
 const bot = new Discord.Client();
 
 //tag is m!
 const tag = "m!";
 
-function toCommandName(str){
+let toCommandName = function(str){
     str = remove(str,'[',']');
     str = removeStr(str);
     str = remove(str, ' @',' ',true);
     return str.trim();
 }
+
+exportsObj.toCommandName = toCommandName;
+
 
 function remove(str,begin,end,finish = false){
     let first = str.split(begin);
@@ -61,6 +62,8 @@ bot.on('ready', () => {
     bot.user.setStatus('available'); // Can be 'available', 'idle', 'dnd', or 'invisible'
     bot.user.setActivity("m!help - " + bot.guilds.size + " project(s)");
 });
+
+let commands = require('./command.js');
 
 bot.on('message', (message) => {
         if(message.author.id != '451414817069072385'){
@@ -102,7 +105,6 @@ bot.on('message', (message) => {
         }
         
     }
-
 });
 
 function find(content, txt){
@@ -110,4 +112,4 @@ function find(content, txt){
     return valid;
 }
 
-bot.login(process.env.BOT_TOKEN);
+bot.login('NDUxNDE0ODE3MDY5MDcyMzg1.Dfrqww.owO7o8kJU4yjjJqTLMNruqjOHWI');

@@ -2,9 +2,10 @@ let main = require('./bot.js');
 
 let App = main.app;
 let Database = main.database;
+let toCommandName = main.toCommandName;
 
 const commands = [
-
+    
     {//help [optional]
       name : 'help [optional]',
       description : 'say the list of functions',
@@ -13,7 +14,7 @@ const commands = [
 			let param = message.param;
 			if(param != null){
 				for(let i = 0;i<commands.length;i++){
-					if(commands[i].name == param && (commands[i].visibility == null || commands[i].visibility == true)){
+					if((commands[i].name == param || toCommandName(commands[i].name) == param) && (commands[i].visibility == null || commands[i].visibility == true)){
 						txt = '  • `'+commands[i].name+'` : '+commands[i].description+'\n';;
 					}
                 }
