@@ -204,6 +204,9 @@ const commands = [
             if(message.hasExtra() == true){
                 return null;
             }
+            if(message.PM() == true){
+                return "Not working in private message, you have to send m!tasks instead";
+            }
             let languages = [];
             Database.from('languages').on('child_added',function(data) {
                 languages.push(data.val());
