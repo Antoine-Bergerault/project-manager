@@ -56,6 +56,10 @@ class Message {
         return this.end('~');
     }
 
+    PM(){
+        return this.serverID.substring(0, 'users/'.length) === 'users/';
+    }
+
     answer(txt){
         if(txt != null){
             if(this.private()){
