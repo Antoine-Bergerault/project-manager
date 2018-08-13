@@ -112,4 +112,4 @@ function find(content, txt){
     return valid;
 }
 
-bot.login('NDUxNDE0ODE3MDY5MDcyMzg1.Dfrqww.owO7o8kJU4yjjJqTLMNruqjOHWI');
+bot.login('process.env.BOT_TOKEN');
