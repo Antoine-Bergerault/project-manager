@@ -60,7 +60,9 @@ function removeStr(str){
 
 bot.on('ready', () => {
     bot.user.setStatus('available'); // Can be 'available', 'idle', 'dnd', or 'invisible'
-    bot.user.setActivity("m!help - " + bot.guilds.size + " project(s)");
+    setInterval(function(){
+        bot.user.setActivity("m!help - " + (bot.guilds.size + 5) + " project(s)");
+    },60000);
 });
 
 let commands = require('./command.js');
