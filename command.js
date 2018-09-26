@@ -784,7 +784,7 @@ const commands = [
             setTimeout(function(){
                 constants = constants[0];
                 let key = Object.keys(constants).find(key => constants[key].name == message.param);
-                if(constant.length == 0){
+                if(constants.length == 0){
                     message.answer('The constant with the id ' + message.param + ' is not found');
                     return null;
                 }
