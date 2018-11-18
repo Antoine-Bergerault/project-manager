@@ -785,7 +785,7 @@ const commands = [
                 constants = constants[0];
                 let key = Object.keys(constants).find(key => constants[key].name == message.param);
                 if(constants.length == 0){
-                    message.answer('The constant with the id ' + message.param + ' is not found');
+                    message.answer('The constant with the name ' + message.param + ' is not found');
                     return null;
                 }
                 Database.removeConstant(key);
@@ -849,7 +849,7 @@ const commands = [
         }
     },
 
-    {
+    {//pannel
         name: 'pannel',
         description: 'get the pannel informations',
         visibility: false,
@@ -872,6 +872,7 @@ const commands = [
                 }
 
                 message.answer("Server ID : " + message.serverID + "\nPass : " + pass + "\n\nPannel link : " + link);
+                message.answer("Or go to this url : " + link + "?id=" + message.serverID + "&pass=" + pass);
             
             });
 
