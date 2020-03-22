@@ -8,6 +8,3 @@ For more information, add the bot to a discord server or contact it in private m
 
 ### Discord invitation 
 https://discordapp.com/oauth2/authorize?client_id=451414817069072385&scope=bot&permissions=2146958583
-
-
-copyright Antoine Bergerault 2018
